@@ -1,23 +1,10 @@
 {
   "version": 2,
-  "builds": [
-    {
-      "src": "webhook-server.js",
-      "use": "@vercel/node"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "/webhook-server.js"
-    }
-  ],
+  "buildCommand": "cd preview-app && npm run build",
+  "outputDirectory": "preview-app/.next",
+  "installCommand": "cd preview-app && npm install",
+  "framework": "nextjs",
   "env": {
     "NODE_ENV": "production"
-  },
-  "functions": {
-    "webhook-server.js": {
-      "maxDuration": 300
-    }
   }
 }
