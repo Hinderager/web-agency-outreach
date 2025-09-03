@@ -12,6 +12,8 @@ interface ProspectData {
     logoUrl: string | null
   }
   screenshot: string
+  hasGeneratedWebsite?: boolean
+  generatedWebsitePath?: string | null
 }
 
 async function getProspectData(slug: string): Promise<ProspectData | null> {
@@ -19,6 +21,18 @@ async function getProspectData(slug: string): Promise<ProspectData | null> {
     const filePath = path.join(process.cwd(), 'prospects', slug, 'content.json')
     const fileContents = fs.readFileSync(filePath, 'utf8')
     return JSON.parse(fileContents)
+  } catch (error) {
+    return null
+  }
+}
+
+async function getGeneratedWebsite(slug: string): Promise<string | null> {
+  try {
+    const generatedPath = path.join(process.cwd(), 'prospects', slug, 'generated', 'index.html')
+    if (fs.existsSync(generatedPath)) {
+      return fs.readFileSync(generatedPath, 'utf8')
+    }
+    return null
   } catch (error) {
     return null
   }
@@ -38,8 +52,35 @@ export default async function ProspectPage({ params }: { params: { slug: string 
     )
   }
 
-  const { companyName, brand, screenshot } = prospectData
+  const { companyName, brand, screenshot, hasGeneratedWebsite } = prospectData
+  const generatedWebsite = hasGeneratedWebsite ? await getGeneratedWebsite(params.slug) : null
 
+  // If we have a Replit-generated website, display it
+  if (generatedWebsite) {
+    return (
+      <div style={{ width: '100%', height: '100vh' }}>
+        <div style={{
+          background: 'linear-gradient(90deg, #10b981, #059669)',
+          color: 'white',
+          padding: '10px 20px',
+          fontSize: '14px',
+          fontWeight: 'bold',
+          textAlign: 'center',
+          position: 'sticky',
+          top: 0,
+          zIndex: 1000
+        }}>
+          🤖 AI-Generated Website Preview for {companyName} | Enhanced by Replit
+        </div>
+        <div 
+          style={{ height: 'calc(100vh - 50px)' }}
+          dangerouslySetInnerHTML={{ __html: generatedWebsite }}
+        />
+      </div>
+    )
+  }
+
+  // Fallback to regular preview
   return (
     <div className="container">
       <div 
@@ -52,6 +93,16 @@ export default async function ProspectPage({ params }: { params: { slug: string 
       >
         <h1>{companyName}</h1>
         <p>Modern, Professional Website Design</p>
+        <div style={{
+          background: 'rgba(255,255,255,0.2)',
+          padding: '10px 20px',
+          borderRadius: '25px',
+          fontSize: '14px',
+          marginTop: '20px',
+          display: 'inline-block'
+        }}>
+          📋 Standard Preview (Replit generation not available)
+        </div>
       </div>
       
       <div className="preview-info">
@@ -89,6 +140,20 @@ export default async function ProspectPage({ params }: { params: { slug: string 
             />
           </div>
         )}
+        
+        <div style={{
+          background: 'linear-gradient(135deg, #f3f4f6, #e5e7eb)',
+          padding: '20px',
+          borderRadius: '12px',
+          margin: '20px 0',
+          border: '2px dashed #9ca3af'
+        }}>
+          <h3 style={{ color: '#374151', marginTop: 0 }}>🚀 Coming Soon: AI-Generated Websites</h3>
+          <p style={{ color: '#6b7280', margin: 0 }}>
+            This preview will be enhanced with a fully custom AI-generated website using Replit's technology.
+            Each prospect will get a unique, professionally designed website tailored to their business.
+          </p>
+        </div>
       </div>
       
       <div className="preview-info">
@@ -100,6 +165,7 @@ export default async function ProspectPage({ params }: { params: { slug: string 
           <li>✅ Mobile-optimized layout</li>
           <li>✅ SEO-friendly structure</li>
           <li>✅ Fast loading performance</li>
+          <li>🤖 <strong>AI-Generated Custom Website (Replit Integration)</strong></li>
         </ul>
       </div>
     </div>
@@ -107,7 +173,6 @@ export default async function ProspectPage({ params }: { params: { slug: string 
 }
 
 export async function generateStaticParams() {
-  // This will generate static pages for all prospects
   const prospectsDir = path.join(process.cwd(), 'prospects')
   
   try {
