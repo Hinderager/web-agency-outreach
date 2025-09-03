@@ -1,0 +1,50 @@
+[
+  {
+    "company": "Apple Inc",
+    "domain": "apple.com",
+    "email": "contact@apple.com",
+    "city": "Cupertino",
+    "score": 96,
+    "primaryColor": "#0ea5e9",
+    "secondaryColor": "#111827",
+    "heroPath": "",
+    "title": "Apple Inc",
+    "primary": "#0ea5e9",
+    "secondary": "#111827",
+    "slug": "apple-inc",
+    "branch": "feature/apple-inc",
+    "preview_url": "https://web-agency-outreach-git-feature-apple-inc-hinderager.vercel.app"
+  },
+  {
+    "company": "Google",
+    "domain": "google.com",
+    "email": "hello@google.com",
+    "city": "Mountain View",
+    "score": 87,
+    "primaryColor": "#0ea5e9",
+    "secondaryColor": "#111827",
+    "heroPath": "",
+    "title": "Google",
+    "primary": "#0ea5e9",
+    "secondary": "#111827",
+    "slug": "google",
+    "branch": "feature/google",
+    "preview_url": "https://web-agency-outreach-git-feature-google-hinderager.vercel.app"
+  },
+  {
+    "company": "Microsoft",
+    "domain": "microsoft.com",
+    "email": "info@microsoft.com",
+    "city": "Redmond",
+    "score": 89,
+    "primaryColor": "#0ea5e9",
+    "secondaryColor": "#111827",
+    "heroPath": "",
+    "title": "Microsoft",
+    "primary": "#0ea5e9",
+    "secondary": "#111827",
+    "slug": "microsoft",
+    "branch": "feature/microsoft",
+    "preview_url": "https://web-agency-outreach-git-feature-microsoft-hinderager.vercel.app"
+  }
+]
