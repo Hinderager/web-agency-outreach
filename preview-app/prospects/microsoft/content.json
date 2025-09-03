@@ -1,0 +1,12 @@
+{
+  "companyName": "Microsoft",
+  "title": "Microsoft",
+  "brand": {
+    "primary": "#0ea5e9",
+    "secondary": "#111827"
+  },
+  "assets": {
+    "logoUrl": null
+  },
+  "screenshot": "/prospects/microsoft/hero.png"
+}
