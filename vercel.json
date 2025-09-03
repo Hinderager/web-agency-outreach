@@ -1,10 +1,15 @@
 {
   "version": 2,
-  "buildCommand": "cd preview-app && npm run build",
-  "outputDirectory": "preview-app/.next",
-  "installCommand": "cd preview-app && npm install",
-  "framework": "nextjs",
-  "env": {
-    "NODE_ENV": "production"
-  }
+  "builds": [
+    {
+      "src": "preview-app/package.json",
+      "use": "@vercel/next"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/preview-app/$1"
+    }
+  ]
 }
