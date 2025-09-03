@@ -1,0 +1,12 @@
+{
+  "companyName": "Apple Inc",
+  "title": "Apple Inc",
+  "brand": {
+    "primary": "#0ea5e9",
+    "secondary": "#111827"
+  },
+  "assets": {
+    "logoUrl": null
+  },
+  "screenshot": "/prospects/apple-inc/hero.png"
+}
