@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>WORKING - Vercel Test</title>
+    <style>
+        body { 
+            font-family: Arial; 
+            text-align: center; 
+            padding: 50px;
+            background: linear-gradient(45deg, #0ea5e9, #10b981);
+            color: white;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background: rgba(0,0,0,0.1);
+            padding: 40px;
+            border-radius: 20px;
+            display: inline-block;
+        }
+        h1 { font-size: 4rem; margin: 0; }
+        .success { 
+            background: #10b981; 
+            padding: 20px; 
+            border-radius: 10px; 
+            margin: 20px 0;
+            font-size: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 SUCCESS!</h1>
+        <div class="success">
+            ✅ VERCEL IS WORKING!
+        </div>
+        <p>Static deployment successful</p>
+        <p>Time: <span id="time"></span></p>
+    </div>
+    <script>
+        document.getElementById('time').innerText = new Date().toLocaleString();
+    </script>
+</body>
+</html>
