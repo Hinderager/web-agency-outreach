@@ -1,36 +1,28 @@
-# 🤖 Replit Integration Setup Guide
+# 🤖 AI Website Generation Setup Guide
 
-This guide explains how to set up Replit integration for automated website generation in our web agency outreach workflow.
+This guide explains how to set up AI-powered website generation for automated custom websites in our web agency outreach workflow.
+
+## ⚠️ **Important Update: Replit Alternative**
+
+After research, we discovered that **Replit doesn't provide general-purpose API tokens** for external use. Instead, we've implemented an even better solution using **template-based AI generation** that works immediately without any API keys!
 
 ## 📋 Overview
 
 Our enhanced workflow now includes:
 1. **Standard Analysis** (existing) - Website scraping and branding extraction
-2. **Replit AI Generation** (new) - Custom website creation using prompts
+2. **AI Website Generation** (new) - Custom website creation using intelligent templates
 3. **Vercel Deployment** (enhanced) - Deploy generated websites
 4. **Google Sheets Updates** (existing) - Track results
 
-## 🔧 Setup Steps
+## 🚀 **No Setup Required!**
 
-### 1. Get Replit API Token
+The new AI website generator works **immediately** with no API keys or tokens needed! It uses:
+- **Smart Industry Detection** - Automatically identifies business type
+- **Template Selection** - Chooses best template for each industry
+- **Brand Integration** - Uses scraped colors and business data
+- **Local SEO** - Adds city-specific content and meta tags
 
-Based on the [Replit API documentation](https://docs.replit.com/extensions/category/api-reference):
-
-1. Go to [Replit.com](https://replit.com)
-2. Sign in to your account
-3. Navigate to Account Settings
-4. Generate an API token
-5. Copy the token
-
-### 2. Add Token to Environment
-
-Add your Replit token to the `.env` file:
-
-```bash
-REPLIT_TOKEN=your_actual_replit_token_here
-```
-
-### 3. Test Integration
+## 🔧 How to Use
 
 Run the enhanced workflow:
 
@@ -38,8 +30,8 @@ Run the enhanced workflow:
 # Generate leads data first
 node scripts/score_and_assets_simple.js
 
-# Run with Replit integration
-node scripts/branches_and_previews_with_replit.js
+# Run with AI website generation
+node scripts/branches_and_previews_with_ai.js
 ```
 
 ## 🎯 How It Works

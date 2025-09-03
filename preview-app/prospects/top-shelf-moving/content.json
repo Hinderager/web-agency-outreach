@@ -8,5 +8,7 @@
   "assets": {
     "logoUrl": null
   },
-  "screenshot": "/prospects/top-shelf-moving/hero.png"
+  "screenshot": "/prospects/top-shelf-moving/hero.png",
+  "hasGeneratedWebsite": true,
+  "generatedWebsitePath": "app\\prospects\\top-shelf-moving\\generated"
 }

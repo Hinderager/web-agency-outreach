@@ -5,7 +5,7 @@ import simpleGit from "simple-git";
 import { Octokit } from "@octokit/rest";
 import slugify from "slugify";
 import chalk from "chalk";
-import ReplitWebsiteGenerator from './replit_integration.js';
+import AIWebsiteGenerator from './ai_website_generator.js';
 
 const git = simpleGit();
 const octo = new Octokit({ auth: process.env.GITHUB_TOKEN });
@@ -141,10 +141,10 @@ async function run() {
   const scored = JSON.parse(fs.readFileSync(IN, "utf-8"));
   const results = [];
   
-  console.log(chalk.cyan(`🚀 Processing ${scored.length} prospects with Replit + Vercel deployment...`));
+  console.log(chalk.cyan(`🚀 Processing ${scored.length} prospects with AI Website Generation + Vercel deployment...`));
   
-  // Initialize Replit generator
-  const replitGenerator = new ReplitWebsiteGenerator();
+  // Initialize AI website generator
+  const aiGenerator = new AIWebsiteGenerator();
   
   for (const item of scored) {
     const slug = toSlug(item.company);
@@ -152,10 +152,10 @@ async function run() {
     
     console.log(chalk.cyan(`\n📋 Processing: ${item.company}`));
     
-    // Step 1: Generate website with Replit
+    // Step 1: Generate website with AI
     let generatedWebsite = null;
     try {
-      console.log(chalk.blue(`🤖 Attempting Replit website generation...`));
+      console.log(chalk.blue(`🤖 Generating AI-powered custom website...`));
       
       const leadData = {
         businessName: item.company,
@@ -170,14 +170,15 @@ async function run() {
         score: item.score || 85
       };
       
-      generatedWebsite = await replitGenerator.generateCompleteWebsite(leadData, analysisResults);
+      generatedWebsite = await aiGenerator.generateCompleteWebsite(leadData, analysisResults);
       
       if (generatedWebsite) {
-        console.log(chalk.green(`✅ Replit website generated successfully!`));
-        console.log(chalk.cyan(`🔗 Replit Project: ${generatedWebsite.projectUrl}`));
+        console.log(chalk.green(`✅ AI website generated successfully!`));
+        console.log(chalk.cyan(`🎨 Industry: ${generatedWebsite.industry}`));
+        console.log(chalk.cyan(`📁 Template: ${generatedWebsite.template}`));
       }
     } catch (error) {
-      console.log(chalk.yellow(`⚠️  Replit generation failed, using fallback preview`));
+      console.log(chalk.yellow(`⚠️  AI generation failed, using fallback preview`));
     }
     
     // Step 2: Write content files (with or without Replit generation)
@@ -213,15 +214,15 @@ async function run() {
       slug,
       branch: branchName, 
       preview_url: previewUrl,
-      replit_project: generatedWebsite?.projectId || null,
-      replit_url: generatedWebsite?.projectUrl || null,
+      ai_industry: generatedWebsite?.industry || null,
+      ai_template: generatedWebsite?.template || null,
       has_generated_website: !!generatedWebsite
     });
     
     console.log(chalk.green(`✅ Completed ${item.company}: ${previewUrl}`));
     
     if (generatedWebsite) {
-      console.log(chalk.cyan(`🎨 Enhanced with Replit-generated website!`));
+      console.log(chalk.cyan(`🎨 Enhanced with AI-generated custom website!`));
     }
   }
   
@@ -237,17 +238,17 @@ async function run() {
   fs.mkdirSync(path.dirname(OUT), { recursive: true });
   fs.writeFileSync(OUT, JSON.stringify(results, null, 2));
   console.log(chalk.cyan(`\n🎉 Wrote ${OUT}`));
-  console.log(chalk.green(`✅ Created ${results.length} deployments with Replit integration!`));
+  console.log(chalk.green(`✅ Created ${results.length} deployments with AI-generated websites!`));
   
   // Show summary
   console.log(chalk.cyan(`\n📋 Deployment Summary:`));
   results.forEach(result => {
     console.log(chalk.white(`  • ${result.company}: ${result.preview_url}`));
     if (result.has_generated_website) {
-      console.log(chalk.green(`    🤖 Enhanced with Replit-generated website`));
-    }
-    if (result.replit_url) {
-      console.log(chalk.cyan(`    🔗 Replit Project: ${result.replit_url}`));
+      console.log(chalk.green(`    🤖 Enhanced with AI-generated website`));
+      if (result.ai_industry) {
+        console.log(chalk.cyan(`    🏢 Industry: ${result.ai_industry}`));
+      }
     }
   });
 }
