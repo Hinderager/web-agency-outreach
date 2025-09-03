@@ -1,4 +1,2 @@
-domain,company,city,email
-apple.com,Apple Inc,Cupertino,contact@apple.com
-google.com,Google,Mountain View,hello@google.com
-microsoft.com,Microsoft,Redmond,info@microsoft.com
+company,domain,email,city
+"top shelf moving and junk removal","www.topshelfmovingandjunkremoval.com","Hinderager@hotmail.com","boise"
